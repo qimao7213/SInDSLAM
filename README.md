@@ -27,7 +27,7 @@ Our code has two modes of operation. One mode does not rely on ROS, and you can 
 
 **Therefore, please correctly configure the CUDA and OpenCV versions** in "*SInDSLAM/ORB_SLAM2/CMakeLists.txt Line14-15*" and ensure that the **OpenCV version** specified in DBoW2 library matches the version in the main CMakeLists.txt. In VSCode, you can search for "find_package(OpenCV" to ensure that the OpenCV version is correctly configured.
 
-- Step1:
+## Step1:
 ```
   cd ${YOUR_WORKSPACE_PATH}/src
   git clone https://github.com/qimao7213/SInDSLAM
@@ -38,7 +38,7 @@ Our code has two modes of operation. One mode does not rely on ROS, and you can 
   source /devel/setup.bash
 ```
 If everything goes smoothly, you will correctly install SInDSLAM.
-- Step2:
+## Step2:
 
 If you are using the non-ROS mode, navigate to "*SInDSLAM/ORB_SLAM2/Examples/RGB-D/*" and run:
 
@@ -61,7 +61,7 @@ The *octomap_pub* node subscribes to the camera pose, color image, and depth ima
 
 The *octomap_pub* node runs in a small **xterm** window. If you use *Ctrl+C* to close it, the generated point cloud map and octree map will be saved to the path specified in "*sindslam_ros.launch pt_output_file*".
 
-- Step3:
+## Step3:
 
 If you want to save the images generated during the process, you can set your recording path at "*SInDSLAM/ORB_SLAM2/src/DynaDetect.cc Line 38*".
 
