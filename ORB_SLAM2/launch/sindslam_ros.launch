@@ -1,0 +1,29 @@
+<launch>
+
+  <arg name="voc_file" value="/home/bhrqhb/catkin_ws/vSLAM/SInDSLAM/src/ORB_SLAM2/Vocabulary/ORBvoc.txt"/>
+  <arg name="camera_file" value="/home/bhrqhb/catkin_ws/vSLAM/SInDSLAM/src/ORB_SLAM2/Examples/RGB-D/D455.yaml"/>
+  <arg name="dataset_file" value="/home/bhrqhb/dataset/realworld/record5/"/>
+  <arg name="associ_file" value="/home/bhrqhb/dataset/realworld/record5/associate.txt"/>
+  <arg name="pt_output_file" value="/home/bhrqhb/catkin_ws/vSLAM/SInDSLAM/src/octomap_pub/output/"/>
+
+  <node pkg="SInDSLAM" name="rgbd_tum_withros" type="rgbd_tum_withros" output="screen">
+    <param name = "SInDSLAM/voc_file" value="$(arg voc_file)"/>
+    <param name = "SInDSLAM/camera_file" value="$(arg camera_file)"/>  
+    <param name = "SInDSLAM/dataset_file" value="$(arg dataset_file)"/> 
+    <param name = "SInDSLAM/associ_file" value="$(arg associ_file)"/>
+  </node>
+  <node launch-prefix="xterm -e" pkg="octomap_pub" type="pubPointCloud" name="map_publisher" required="true" output="screen">
+    <param name = "SInDSLAM/camera_file" value="$(arg camera_file)"/> 
+    <param name = "SInDSLAM/pt_output_file" value="$(arg pt_output_file)"/> 
+  </node>
+
+  <node launch-prefix="nice" pkg="rviz" type="rviz" name="rviz" args="-d $(find SInDSLAM)/rviz/orb_slam2_ros.rviz" />
+  <node pkg="tf2_ros" type="static_transform_publisher" name="for_rviz" args="0 0 0 0 0 1.570795  /world /rviz_view"/>
+  <include file="$(find SInDSLAM)/launch/octomaptransform.launch" />
+
+
+
+
+</launch>
+
+

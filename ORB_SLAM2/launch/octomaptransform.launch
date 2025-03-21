@@ -1,0 +1,32 @@
+<launch>
+  <node pkg="octomap_server" type="octomap_server_node" name="octomap_server">
+
+    <!-- resolution in meters per pixel -->
+    <param name="resolution" value="0.025" />
+
+    <!-- name of the fixed frame, needs to be "/map" for SLAM -->
+    <param name="frame_id" type="string" value="world" />
+    <!-- <node pkg="tf2_ros" type="static_transform_publisher" name="for_rviz" args="0 0 0 0 0 1.570795  /world /rviz_view"/> -->
+
+    <!-- max range / depth resolution of the kinect in meter -->
+    <param name="sensor_model/max_range" value="1000000.0" />
+    <param name="latch" value="false" />
+
+    <!-- max/min height for occupancy map, should be in meters -->
+    <param name="pointcloud_max_z" value="100000" />
+    <param name="pointcloud_min_z" value="-100000" />
+     
+    <!-- filter_speckles -->
+    <param name="filter_speckles" value="true" />
+
+    <!-- 彩色图是使用高程图还是自带的rgb -->
+    <param name="height_map" value="false" />
+    <param name="colored_map" value="true" />
+
+    <!-- topic from where pointcloud2 messages are subscribed -->
+    <remap from="/cloud_in" to="/publish_pointcloud/orb_slam2/pointcloud" />
+ 
+  </node>
+</launch>
+
+
