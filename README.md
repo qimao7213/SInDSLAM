@@ -19,37 +19,49 @@ The main modified files are::
 ## 1. Build and Start
 **Dependencies:** Ubuntn20.04, ROS1, OpenCV (with CUDA, Optional), xterm, OpenMP and Pangolin-v0.5 (Included in this Git).
 
-我们的程序有两种运行方式，一种不依赖ros的，你可以得到相机的位姿；另一种是依赖ros的，可以在rviz里面看到稠密重建的点云和八叉树地图。
-ros的cv_bridge依赖opencv4.2.0，因此，如果你的opencv版本不是4.2.0，则不能使用ros版本。如果你的opencv是支持cuda的，则我们使用cuda加速的broxflow算法，否则使用deepflow算法。使用cuda的，平均帧率约为9hz，而不使用的，帧率为5hz。
-所以，请在XX里正确配置cuda和opencv的版本，并确保在编译DwBag库时CMakeLists.txt时 opencv版本和根目录CMkaLists.txt一致。在vscode里面，你可以搜索"find_package(OpenCV "来确保正配置OpenCV版本。
+Our code has two modes of operation. One mode does not rely on ROS, and you can obtain the camera pose. The other mode relies on ROS, allowing you to view the dense reconstructed point cloud and octree map in RViz.
+
+**(1)** The ROS version depends on the *cv_bridge* package, which depends on OpenCV 4.2.0. If your OpenCV version is not 4.2.0, you cannot use the ROS version.
+
+**(2)** If your OpenCV supports CUDA, the code uses the CUDA-accelerated BroxFlow algorithm; otherwise, the code uses the DeepFlow algorithm. The average frame rate with CUDA is approximately 9 Hz, while without it, the frame rate is around 5 Hz.
+
+**Therefore, please correctly configure the CUDA and OpenCV versions** in *SInDSLAM/ORB_SLAM2/CMakeLists.txt Line14-15* and ensure that the OpenCV version specified in DBoW2 library matches the version in the root. In VSCode, you can search for "find_package(OpenCV" to ensure that the OpenCV version is correctly configured.
+
 - Step1:
 ```
   cd ${YOUR_WORKSPACE_PATH}/src
   git clone https://github.com/qimao7213/SInDSLAM
   cd SInDSLAM/ORB_SLAM2
-  ./build_new.sh # 这将会编译一些第三方库
+  ./build_new.sh # Compile some third-party libraries.
   cd ../../..
   catkin_make
   source /devel/setup.bash
 ```
-如果顺利，你讲正确安装SInDSLAM
+If everything goes smoothly, you will correctly install SInDSLAM.
 - Step2:
-如果你使用非ros模式，进入到ORB_SLAM2/Example/RGB_D目录下，run
+
+If you are using the non-ROS mode, navigate to "*SInDSLAM/ORB_SLAM2/Examples/RGB-D/*" and run:
+
 ```
 ./rgbd_tum_noros VOC_FILE CAMERA_FILE DATASET_FILE ASSOCIATIONS_FILE
 ```
 Change *VOC_FILE*, *CAMERA_FILE*, *DATASET_FILE*, *ASSOCIATIONS_FILE* to your files.
-如果你使用ros模式，则修改*SInDSLAM/ORB_SLAM2/launch/sindslam_ros.launch*下的文件路径，然后run
+
+---------------------------------------------
+If you are using the ROS mode, modify the file paths in "*SInDSLAM/ORB_SLAM2/launch/sindslam_ros.launch*", and run:
 
 ```
 roslaunch SInDSLAM sindslam_ros.launch
 ```
-然后你将在rviz里面看到重建的三维地图。
-octomap_pub节点从ORB_SLAM2里面订阅相机位姿、彩色图和深度图，然后生成稠密的点云地图和八叉树地图，这将会非常耗时。如果计算负载过大，你可以取消发布点云地图和八叉树地图到RVIZ。octomap_pub节点在xterm小窗口里面运行，如果你使用Ctrl+C来关闭它，生成的点云地图和八叉树地图将会保存在*sindslam_ros.launch*的*pt_output_file*路径下。
+You will see the reconstructed 3D map in RViz.
+
+The *octomap_pub* node subscribes to the camera pose, color image, and depth image from *ORB_SLAM2* node, and then generates a dense point cloud map and an octree map. This process can be very time-consuming. If the computational load is too high, you can stop publishing the point cloud map and octree map to RVIZ. The *octomap_pub* node runs in a small **xterm** window. If you use *Ctrl+C* to close it, the generated point cloud map and octree map will be saved to the path specified in "*sindslam_ros.launch pt_output_file*".
 
 - Step3:
-如果你想保存过程中产生的image，你可以在*SInDSLAM/ORB_SLAM2/src/DynaDetect.cc Line 38*设置你的路径。
-如果你想在RVIZ里面显示真实的轨迹，你可以在*SInDSLAM/ORB_SLAM2/Examples/RGB-D/rgbd_tum_withros.cc Line 63*处设置对齐的矩阵，which是由EVO计算出来的。
+
+If you want to save the images generated during the process, you can set your recording path at "*SInDSLAM/ORB_SLAM2/src/DynaDetect.cc Line 38*".
+
+If you want to display the GT trajectory in RVIZ, you can set the alignment matrix at "SInDSLAM/ORB_SLAM2/Examples/RGB-D/rgbd_tum_withros.cc Line 63", which is calculated by EVO.
 
 ## 2. TUM数据集的对齐问题
 在多篇论文里面报道了TUM RGBD数据集rgb图像和depth图像无法对齐的问题，我认为这个问题是因为在生成XX文件时使用了```xx```指令。
