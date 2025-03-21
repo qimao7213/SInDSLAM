@@ -4,16 +4,17 @@ Semantic-Independent Dynamic SLAM based on Geometric Re-clustering and Optical F
 [PDF](https://ieeexplore.ieee.org/document/10750834), [IEEE](https://ieeexplore.ieee.org/abstract/document/10750834), [BiliBili](https://www.bilibili.com/video/BV1V6mYYrEyr/?spm_id_from=333.1387.upload.video_card.click)
 
 [加一个主图]
+
 Please kindly star :star: this project if it helps you. We take great efforts to develope and maintain it :grin::grin:.
 
-SInDSLAM is based on the the excellent work of [ORB-SLAM2](https://github.com/raulmur/ORB_SLAM2).
+SInDSLAM is based on the the excellent work of [ORB-SLAM2](https://github.com/raulmur/ORB_SLAM2). We achieve SORT localization accuracy on the TUM and Boon datasets, without utilizing semantic segmentation or object detection.
 
-主要修改的文件是:
+The main modified files are::
 
-- "*SInDSLAM/ORB_SLAM2/Examples/RGB-D/rgbd_tum_xx.cc*": 接口函数
-- "*SInDSLAM/ORB_SLAM2/src/DynaDetect.cc*": 动态区域检测
-- "*SInDSLAM/ORB_SLAM2/src/ORBextractor.cc*": 动态特征点剔除 
-- "*SInDSLAM/octomap_pub/src/pubPointCloud.cc*": 重建稠密点云和八叉树地图
+- "*SInDSLAM/ORB_SLAM2/Examples/RGB-D/rgbd_tum_xx.cc*": Interface function
+- "*SInDSLAM/ORB_SLAM2/src/DynaDetect.cc*": Dynamic Region Detection
+- "*SInDSLAM/ORB_SLAM2/src/ORBextractor.cc*": Dynamic Features Points Erasion
+- "*SInDSLAM/octomap_pub/src/pubPointCloud.cc*": Constrction of Dense PointCloud Map and OctoMap
 
 ## 1. Build and Start
 **Dependencies:** Ubuntn20.04, ROS1, OpenCV (with CUDA, Optional), xterm, OpenMP and Pangolin-v0.5 (Included in this Git).
