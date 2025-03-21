@@ -25,7 +25,7 @@ Our code has two modes of operation. One mode does not rely on ROS, and you can 
 
 **(2)** If your OpenCV supports CUDA, the code uses the CUDA-accelerated BroxFlow algorithm; otherwise, the code uses the DeepFlow algorithm. The average frame rate with CUDA is approximately 9 Hz, while without it, the frame rate is around 5 Hz.
 
-**Therefore, please correctly configure the CUDA and OpenCV versions** in *SInDSLAM/ORB_SLAM2/CMakeLists.txt Line14-15* and ensure that the OpenCV version specified in DBoW2 library matches the version in the root. In VSCode, you can search for "find_package(OpenCV" to ensure that the OpenCV version is correctly configured.
+**Therefore, please correctly configure the CUDA and OpenCV versions** in "*SInDSLAM/ORB_SLAM2/CMakeLists.txt Line14-15*" and ensure that the **OpenCV version** specified in DBoW2 library matches the version in the main CMakeLists.txt. In VSCode, you can search for "find_package(OpenCV" to ensure that the OpenCV version is correctly configured.
 
 - Step1:
 ```
@@ -45,8 +45,10 @@ If you are using the non-ROS mode, navigate to "*SInDSLAM/ORB_SLAM2/Examples/RGB
 ```
 ./rgbd_tum_noros VOC_FILE CAMERA_FILE DATASET_FILE ASSOCIATIONS_FILE
 ```
-Change *VOC_FILE*, *CAMERA_FILE*, *DATASET_FILE*, *ASSOCIATIONS_FILE* to your files.
-
+Change *VOC_FILE*, *CAMERA_FILE*, *DATASET_FILE*, *ASSOCIATIONS_FILE* to your files. Example Code:
+```
+./rgbd_tum_noros Vocabulary/ORBvoc.txt Examples/RGB-D/TUMX.yaml PATH_TO_SEQUENCE_FOLDER ASSOCIATIONS_FILE
+```
 ---------------------------------------------
 If you are using the ROS mode, modify the file paths in "*SInDSLAM/ORB_SLAM2/launch/sindslam_ros.launch*", and run:
 
@@ -55,7 +57,9 @@ roslaunch SInDSLAM sindslam_ros.launch
 ```
 You will see the reconstructed 3D map in RViz.
 
-The *octomap_pub* node subscribes to the camera pose, color image, and depth image from *ORB_SLAM2* node, and then generates a dense point cloud map and an octree map. This process can be very time-consuming. If the computational load is too high, you can stop publishing the point cloud map and octree map to RVIZ. The *octomap_pub* node runs in a small **xterm** window. If you use *Ctrl+C* to close it, the generated point cloud map and octree map will be saved to the path specified in "*sindslam_ros.launch pt_output_file*".
+The *octomap_pub* node subscribes to the camera pose, color image, and depth image from *ORB_SLAM2* node, and then generates a dense point cloud map and an octree map. This process can be very time-consuming. If the computational load is too high, you can stop publishing the point cloud map and octree map to RVIZ. 
+
+The *octomap_pub* node runs in a small **xterm** window. If you use *Ctrl+C* to close it, the generated point cloud map and octree map will be saved to the path specified in "*sindslam_ros.launch pt_output_file*".
 
 - Step3:
 
@@ -74,7 +78,6 @@ If you want to display the GT trajectory in RVIZ, you can set the alignment matr
 
 ## 4. Our Datasets
 我们自己使用D455i相机录制了一个数据集，格式和TUM RGBD一样。里面的动态物体是仿人机器人，通常的语义分割算法很难辨认它。
-
 
 ### Citation
 
