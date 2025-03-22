@@ -30,7 +30,10 @@ Our code has two modes of operation. One mode does not rely on ROS, and you can 
 
 **(2)** If your OpenCV supports CUDA, the code uses the CUDA-accelerated BroxFlow algorithm; otherwise, the code uses the DeepFlow algorithm. The average frame rate with CUDA is approximately 9 Hz, while without it, the frame rate is around 5 Hz.
 
-**Therefore, please correctly configure the CUDA and OpenCV versions** in "*SInDSLAM/ORB_SLAM2/CMakeLists.txt Line14-15*" and ensure that the **OpenCV version** specified in DBoW2 library matches the version in the main CMakeLists.txt. In VSCode, you can search for "find_package(OpenCV" to ensure that the OpenCV version is correctly configured.
+**Therefore, please correctly configure the CUDA and OpenCV configs** in "*SInDSLAM/ORB_SLAM2/CMakeLists.txt Line14-15*" and ensure that the **OpenCV version** specified in DBoW2 library matches the version in the main CMakeLists.txt. In VSCode, you can search for "find_package(OpenCV" to ensure that the OpenCV version is correctly configured.
+
+If you want to use **CUDA + ROS**, you can compile OpenCV 4.2.0 with CUDA acceleration; or you can compile `cv_bridge` from source, name it `cv_bridge_1`, and make it depend on the CUDA-enabled OpenCV version. In the `CMakeLists.txt` file, use `find_package(cv_bridge_1)`.
+
 
 ## Step1:
 ```
