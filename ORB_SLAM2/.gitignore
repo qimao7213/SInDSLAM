@@ -25,7 +25,6 @@ lib/
 imgFeature/
 densemap/
 output/
-EVO/
 kitti_virtual/
 Examples/RGB-D/CameraTrajectory.txt
 Examples/RGB-D/rgbd_tum_noros
