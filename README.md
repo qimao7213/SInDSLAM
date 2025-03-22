@@ -83,7 +83,9 @@ But in fact, there is a 1-frame offset between the RGB and the Depth images. The
 ```
 python associate.py rgb.txt depth.txt > associations.txt --offset -0.033
 ```
-【给图片实例。】
+<p align="center">
+    <img src="ImageAlignment.png" alt="ImageAlignment" width="50%">
+</p>
 
 ## 3. EVO
 请使用TUM数据集官方提供的python脚本（在本仓库的ORB_SLAM2/EVO/下），而不是github上的EVO库进行性能评估。
