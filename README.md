@@ -91,7 +91,12 @@ python associate.py rgb.txt depth.txt > associations.txt --offset -0.033
 请使用TUM数据集官方提供的python脚本（在本仓库的ORB_SLAM2/EVO/下），而不是github上的EVO库进行性能评估。
 
 ## 4. Our Datasets
-我们自己使用D455i相机录制了一个数据集，格式和TUM RGBD一样。里面的动态物体是仿人机器人，通常的语义分割算法很难辨认它。
+We recorded our own dataset using the D455i camera, with a format same to that of the TUM RGBD dataset. 
+
+The dynamic object within it is a humanoid robot, which is typically challenging for semantic segmentation algorithms to recognize.
+[Scene_1](https://drive.google.com/file/d/1WN0vHl33vBscGQAoQZ1gDdMmwCbvlylL/view?usp=sharing), [Scene_2](https://drive.google.com/file/d/1Z7jZLiR5aM18TnesJSy7eRUwxQDexsOV/view?usp=sharing)
+## 5
+If you encounter any issues during the usage, please create an issue or contact me via email.
 
 ### Citation
 
