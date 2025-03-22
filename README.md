@@ -1,14 +1,14 @@
 # SInDSLAM
 Semantic-Independent Dynamic SLAM based on Geometric Re-clustering and Optical Flow Residuals, IEEE TCSVT, 2024.
 
-[PDF](https://ieeexplore.ieee.org/document/10750834), [IEEE](https://ieeexplore.ieee.org/abstract/document/10750834), [BiliBili](https://www.bilibili.com/video/BV1V6mYYrEyr/?spm_id_from=333.1387.upload.video_card.click)
+[PDF](file/PDF.pdf), [IEEE](https://ieeexplore.ieee.org/abstract/document/10750834), [BiliBili](https://www.bilibili.com/video/BV1V6mYYrEyr/?spm_id_from=333.1387.upload.video_card.click)
 
 <p align="center">
-    <img src="overall.png" alt="Overall Results" width="80%">
+    <img src="file/overall.png" alt="Overall Results" width="80%">
 </p>
 
 <p align="center">
-    <img src="重建.png" alt="Environment Mapping" width="80%">
+    <img src="file/重建.png" alt="Environment Mapping" width="80%">
 </p>
 Please kindly star :star: this project if it helps you. We take great efforts to develope and maintain it :grin::grin:.
 
@@ -22,7 +22,7 @@ The main modified files are::
 - "*SInDSLAM/octomap_pub/src/pubPointCloud.cc*": Constrction of Dense PointCloud Map and OctoMap
 
 ## 1. Build and Start
-**Dependencies:** Ubuntn20.04, ROS1, OpenCV (with CUDA, Optional), xterm, OpenMP and Pangolin-v0.5 (Included in this Git).
+**Dependencies:** Ubuntn20.04, ROS1, OpenCV (with CUDA, Optional), xterm, OpenMP and [Pangolin-v0.5](file/Pangolin_v0.5.zip) (Included in this Git).
 
 Our code has two modes of operation. One mode does not rely on ROS, and you can obtain the camera pose. The other mode relies on ROS, allowing you to view the dense reconstructed point cloud and octree map in RViz.
 
@@ -84,11 +84,11 @@ But in fact, there is a 1-frame offset between the RGB and the Depth images. The
 python associate.py rgb.txt depth.txt > associations.txt --offset -0.033
 ```
 <p align="center">
-    <img src="ImageAlignment.png" alt="ImageAlignment" width="80%">
+    <img src="file/ImageAlignment.png" alt="ImageAlignment" width="80%">
 </p>
 
 ## 3. EVO
-请使用TUM数据集官方提供的python脚本（在本仓库的ORB_SLAM2/EVO/下），而不是github上的EVO库进行性能评估。
+Please use the Python script provided by the TUM dataset (located in the [EVO](/ORB_SLAM2/EVO/)) for performance evaluation, instead of the EVO library on GitHub.
 
 ## 4. Our Datasets
 We recorded our own dataset using the D455i camera, with a format same to that of the TUM RGBD dataset. 
