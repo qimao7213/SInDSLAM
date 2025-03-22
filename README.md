@@ -4,11 +4,11 @@ Semantic-Independent Dynamic SLAM based on Geometric Re-clustering and Optical F
 [PDF](https://ieeexplore.ieee.org/document/10750834), [IEEE](https://ieeexplore.ieee.org/abstract/document/10750834), [BiliBili](https://www.bilibili.com/video/BV1V6mYYrEyr/?spm_id_from=333.1387.upload.video_card.click)
 
 <p align="center">
-    <img src="overall.png" alt="Overall Results" width="50%">
+    <img src="overall.png" alt="Overall Results" width="80%">
 </p>
 
 <p align="center">
-    <img src="重建.png" alt="Environment Mapping" width="50%">
+    <img src="重建.png" alt="Environment Mapping" width="80%">
 </p>
 Please kindly star :star: this project if it helps you. We take great efforts to develope and maintain it :grin::grin:.
 
@@ -84,7 +84,7 @@ But in fact, there is a 1-frame offset between the RGB and the Depth images. The
 python associate.py rgb.txt depth.txt > associations.txt --offset -0.033
 ```
 <p align="center">
-    <img src="ImageAlignment.png" alt="ImageAlignment" width="50%">
+    <img src="ImageAlignment.png" alt="ImageAlignment" width="80%">
 </p>
 
 ## 3. EVO
