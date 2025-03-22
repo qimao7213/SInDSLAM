@@ -7,7 +7,7 @@ Semantic-Independent Dynamic SLAM based on Geometric Re-clustering and Optical F
 
 Please kindly star :star: this project if it helps you. We take great efforts to develope and maintain it :grin::grin:.
 
-SInDSLAM is based on the the excellent work of [ORB-SLAM2](https://github.com/raulmur/ORB_SLAM2). We achieve SORT localization accuracy on the TUM and Boon datasets, without utilizing semantic segmentation or object detection.
+SInDSLAM is based on the the excellent work of [ORB-SLAM2](https://github.com/raulmur/ORB_SLAM2). We achieve SORT localization accuracy on the [TUM](https://cvg.cit.tum.de/data/datasets/rgbd-dataset/download) and [Boon](http://www.ipb.uni-bonn.de/data/rgbd-dynamicdataset) datasets, without utilizing semantic segmentation or object detection.
 
 The main modified files are::
 
@@ -67,10 +67,17 @@ If you want to save the images generated during the process, you can set your re
 
 If you want to display the GT trajectory in RVIZ, you can set the alignment matrix at "SInDSLAM/ORB_SLAM2/Examples/RGB-D/rgbd_tum_withros.cc Line 63", which is calculated by EVO.
 
-## 2. TUM数据集的对齐问题
-在多篇论文里面报道了TUM RGBD数据集rgb图像和depth图像无法对齐的问题，我认为这个问题是因为在生成XX文件时使用了```xx```指令。
+## 2. Alignment of RGB-Depth Images in TUM RGBD dataset
+The misalignment issue between RGB and depth images in the TUM RGBD dataset has been reported in many papers. 
 
-但其实，rgb图像和depth图像之间有一个offset，所以如果使用指令：``` xx ```，那么图像可以正确对齐。
+I think this issue arises from the use the following code when generating the *associations.txt* file.
+```
+python associate.py rgb.txt depth.txt > associations.txt
+```
+But in fact, there is a 1-frame offset between the RGB and the Depth images. Therefore, using the following code can correctly align the images:：
+```
+python associate.py rgb.txt depth.txt > associations.txt --offset -0.033
+```
 【给图片实例。】
 
 ## 3. EVO
