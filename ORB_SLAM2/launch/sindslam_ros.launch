@@ -1,10 +1,10 @@
 <launch>
 
-  <arg name="voc_file" value="/home/bhrqhb/catkin_ws/vSLAM/SInDSLAM/src/ORB_SLAM2/Vocabulary/ORBvoc.txt"/>
-  <arg name="camera_file" value="/home/bhrqhb/catkin_ws/vSLAM/SInDSLAM/src/ORB_SLAM2/Examples/RGB-D/D455.yaml"/>
-  <arg name="dataset_file" value="/home/bhrqhb/dataset/realworld/record5/"/>
-  <arg name="associ_file" value="/home/bhrqhb/dataset/realworld/record5/associate.txt"/>
-  <arg name="pt_output_file" value="/home/bhrqhb/catkin_ws/vSLAM/SInDSLAM/src/octomap_pub/output/"/>
+  <arg name="voc_file" value="/home/bhrqhb/catkin_ws/SInDSLAM2/src/SInDSLAM/ORB_SLAM2/Vocabulary/ORBvoc.txt"/>
+  <arg name="camera_file" value="/home/bhrqhb/catkin_ws/SInDSLAM2/src/SInDSLAM/ORB_SLAM2/Examples/RGB-D/Bonn.yaml"/>
+  <arg name="dataset_file" value="/home/bhrqhb/dataset/DynaSLAM/Bonn/rgbd_bonn_person_tracking2/"/>
+  <arg name="associ_file" value="/home/bhrqhb/dataset/DynaSLAM/Bonn/rgbd_bonn_person_tracking2/associations.txt"/>
+  <arg name="pt_output_file" value="/home/bhrqhb/catkin_ws/SInDSLAM2/src/SInDSLAM/octomap_pub/output/"/>
 
   <node pkg="SInDSLAM" name="rgbd_tum_withros" type="rgbd_tum_withros" output="screen">
     <param name = "SInDSLAM/voc_file" value="$(arg voc_file)"/>

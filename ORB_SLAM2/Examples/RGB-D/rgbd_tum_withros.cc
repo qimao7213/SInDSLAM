@@ -423,8 +423,8 @@ int main(int argc, char **argv)
     cout << "mean tracking time: " << totaltime / nImages << endl;
     cout << "mean dynamic detecting time: " << totaltime2 / nImages << endl;
     // Save camera trajectory
-    SLAM.SaveTrajectoryTUM("/home/bhrqhb/catkin_ws/vSLAM/SInDSLAM/src/ORB_SLAM2/Examples/RGB-D/CameraTrajectory.txt");
-    SLAM.SaveKeyFrameTrajectoryTUM("/home/bhrqhb/catkin_ws/vSLAM/SInDSLAM/src/ORB_SLAM2/Examples/RGB-D/KeyFrameTrajectory.txt");
+    SLAM.SaveTrajectoryTUM("CameraTrajectory.txt");
+    SLAM.SaveKeyFrameTrajectoryTUM("KeyFrameTrajectory.txt");
     return 0;
 }
 

@@ -26,7 +26,7 @@ Panels:
   - Class: rviz/Time
     Name: Time
     SyncMode: 0
-    SyncSource: PtCloud_Octomap
+    SyncSource: ""
 Preferences:
   PromptSaveOnExit: true
 Toolbars:
@@ -244,7 +244,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 10.508337020874023
+      Distance: 8.85357666015625
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -260,9 +260,9 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.474795937538147
+      Pitch: 0.05479620397090912
       Target Frame: <Fixed Frame>
-      Yaw: 4.649953365325928
+      Yaw: 4.579951763153076
     Saved: ~
 Window Geometry:
   Displays:

@@ -1623,11 +1623,11 @@ void ORB_SLAM2::DynaDetect::DetectDynaArea
     // cv::bitwise_or(imgDyna, imgMaskHighError, imgDyna2);
     // imgDyna.setTo(255, imgMaskHighError);
     //--------------------for draw image------------------
-    // Mat imgRGBWithDyna, imgRGBWithDyna2;
-    // imgRGB.convertTo(imgRGBWithDyna, cv::COLOR_GRAY2RGB);
-    // imgRGB.convertTo(imgRGBWithDyna2, cv::COLOR_GRAY2RGB);
-    // imgRGBWithDyna2.setTo(cv::Scalar(0, 0, 255), imgDyna);
-    // cv::addWeighted(imgRGBWithDyna, 0.5, imgRGBWithDyna2, 0.5, 0, imgRGBWithDyna);
+    Mat imgRGBWithDyna, imgRGBWithDyna2;
+    imgRGB.convertTo(imgRGBWithDyna, cv::COLOR_GRAY2RGB);
+    imgRGB.convertTo(imgRGBWithDyna2, cv::COLOR_GRAY2RGB);
+    imgRGBWithDyna2.setTo(cv::Scalar(0, 0, 255), imgDyna);
+    cv::addWeighted(imgRGBWithDyna, 0.5, imgRGBWithDyna2, 0.5, 0, imgRGBWithDyna);
     //--------------------for draw image------------------
 
     Mat imgStatic2 = (imgTotalArea - imgDyna) * 125/255;
@@ -1638,7 +1638,8 @@ void ORB_SLAM2::DynaDetect::DetectDynaArea
         // imshow("imgMaskTotal", imgMaskTotal);    
     #endif
     imshow("Gray", imgGray);
-    imshow("imgDyna", imgDyna);     
+    imshow("imgDyna", imgDyna);  
+    imshow("imgDynaRGB", imgRGBWithDyna);  
     end_time = cv::getTickCount();
     std::cout << "Dynamic detection timecost:" << ((end_time - begin_time)/ cv::getTickFrequency()) << std::endl;
     timecost4 += ((end_time - begin_time)/ cv::getTickFrequency());
